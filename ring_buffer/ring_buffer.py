@@ -1,9 +1,20 @@
 class RingBuffer:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
+        self.values = [None] * capacity
+        self.nextIndex = 0
 
     def append(self, item):
-        pass
+        self.values[self.nextIndex] = item
+        if self.nextIndex == self.capacity - 1:
+            self.nextIndex = 0
+        else:
+            self.nextIndex += 1
 
     def get(self):
-        pass
+        returnArray = []
+        for i in range(0, self.capacity):
+            item = self.values[i]
+            if item is not None:
+                returnArray.append(item)
+        return returnArray
